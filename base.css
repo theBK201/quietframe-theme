@@ -170,11 +170,22 @@ html {
     height: 40px;
 }
 
-.layout-desktop .headerTabs {
-    margin-left: 0;
+.layout-desktop .skinHeader-contents {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    padding: 0 2em;
+    box-sizing: border-box;
+}
+
+.layout-desktop .headerTabs {
+    margin: 0 auto !important;
+    width: auto !important;    
     display: flex;
     justify-content: center;
+    position: relative;
+    left: -20px;
 }
 
 @media (max-width: 1599px) {
