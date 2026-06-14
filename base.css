@@ -57,9 +57,22 @@ html {
 }
 
 .pageTitleWithLogo {
-    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;                     
+    background-size: contain;
+    width: 40px !important;        /* Shrinks the logo container so only the triangle icon is visible */
+    overflow: visible !important;
 }
 
+.pageTitleWithLogo::after {
+    content: "QuietFrame";
+    font-size: 22px;               
+    font-weight: bold;
+    color: var(--theme-text-colour);
+    font-family: sans-serif;
+    white-space: nowrap;           /* Keeps the text on a single line */
+}
 .skinHeader {
     background-color: transparent;
 }
@@ -127,6 +140,8 @@ html {
 .headerTabs .emby-tabs-slider {
     display: flex;
     align-items: center;
+    justify-content: center; /* Ensures the individual tabs stay centered inside the container */
+    margin: 0 auto;
 }
 
 .headerTabs .emby-tab-button,
@@ -156,7 +171,10 @@ html {
 }
 
 .layout-desktop .headerTabs {
-    margin-left: 250px;
+    margin-left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 1599px) {
