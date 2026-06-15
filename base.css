@@ -371,28 +371,35 @@ progress {
 
 /* Content Details */
 
-.layout-desktop .detailImageContainer .card {
-    width: 250px;
-    max-width: unset;
-    top: 1.5em;
-    left: 0;
-}
+@media not text and (hover: none) and (pointer: coarse), screen and (min-width: 1025px) {
+    :not(.layout-tv) .layout-desktop .detailImageContainer .card {
+        width: 250px;
+        max-width: unset;
+        top: 1.5em;
+        left: 0;
+    }
+    
+    /* Backwards Compatibility for versions before 10.11.0 */
+    :not(.layout-tv) .layout-desktop .infoWrapper .detailImageContainer .card {
+        padding-top: 8.5em;
+    }
+    
+    :not(.layout-tv) .layout-desktop .detailPagePrimaryContent {
+        padding-top: 135px;
+        padding-left: 300px;
+        min-height: 325px;
+    }
 
-/* Backwards Compatibility for versions before 10.11.0 */
-.layout-desktop .infoWrapper .detailImageContainer .card {
-    padding-top: 8.5em;
-}
+    :not(.layout-tv) .layout-desktop .mainDetailButtons {
+        margin-top: 350px;
+        margin-left: 292px;
+        position: absolute;
+    }
 
-.layout-desktop .detailPagePrimaryContent {
-    padding-top: 135px;
-    padding-left: 300px;
-    min-height: 325px;
-}
-
-.layout-desktop .mainDetailButtons {
-    margin-top: 350px;
-    margin-left: 292px;
-    position: absolute;
+    :not(.layout-tv) .layout-desktop .infoWrapper {
+        padding-top: 226px;
+        padding-left: 300px;
+    }
 }
 
 .layout-mobile .mainDetailButtons {
@@ -479,11 +486,6 @@ progress {
 .detailRibbon {
     background: unset;
     padding-left: 0 !important;
-}
-
-.layout-desktop .infoWrapper {
-    padding-top: 226px;
-    padding-left: 300px;
 }
 
 .itemBackdrop::before {
