@@ -790,3 +790,12 @@ progress {
 .chapterThumbText {
     width: fit-content;
 }
+
+/* Player Overrides */
+
+.btnPip,
+button[title*="Picture-in-Picture"],
+button[title*="Picture in picture"],
+button[data-action="pip"] {
+    display: none !important;
+}
