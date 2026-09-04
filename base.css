@@ -374,30 +374,28 @@ progress {
     :not(.layout-tv) .layout-desktop .detailImageContainer .card {
         width: 250px;
         max-width: unset;
+        position: absolute;
         top: 1.5em;
         left: 0;
     }
 
-    /* Backwards Compatibility for versions before 10.11.0 */
-    :not(.layout-tv) .layout-desktop .infoWrapper .detailImageContainer .card {
-        padding-top: 8.5em;
-    }
-
-    :not(.layout-tv) .layout-desktop .detailPagePrimaryContent {
-        padding-top: 135px;
-        padding-left: 300px;
-        min-height: 325px;
+    /* Shift all content (title, description, buttons) right of the 250px poster */
+    :not(.layout-tv) .layout-desktop .detailPagePrimaryContainer {
+        padding-left: 290px !important;
     }
 
     :not(.layout-tv) .layout-desktop .mainDetailButtons {
-        margin-top: 350px;
-        margin-left: 292px;
-        position: absolute;
+        position: relative;
+        margin-top: 1em;
+        margin-left: 0;
     }
 
+    /* Reset legacy absolute-height/padding wrappers */
+    :not(.layout-tv) .layout-desktop .detailPagePrimaryContent,
     :not(.layout-tv) .layout-desktop .infoWrapper {
-        padding-top: 226px;
-        padding-left: 300px;
+        padding-top: unset;
+        padding-left: unset;
+        min-height: unset;
     }
 }
 
@@ -477,7 +475,6 @@ progress {
     height: unset;
 }
 
-.layout-desktop .detailPagePrimaryContainer,
 .layout-desktop .detailPageContent {
     padding-left: 3.3% !important;
 }
