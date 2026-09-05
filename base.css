@@ -371,31 +371,55 @@ progress {
 
 /* Content Details - Web Browsers Only (Excludes Android TV, TizenOS, webOS, and Smart TVs) */
 @media screen and (min-width: 1025px) and (hover: hover) and (pointer: fine) {
-    :not(.layout-tv) .layout-desktop .detailImageContainer .card {
-        width: 250px;
-        max-width: unset;
-        position: absolute;
-        top: 1.5em;
-        left: 0;
-    }
-
-    /* Shift all content (title, description, buttons) right of the 250px poster */
+    /* Establish a two-column grid layout */
     :not(.layout-tv) .layout-desktop .detailPagePrimaryContainer {
-        padding-left: 290px !important;
+        display: grid !important;
+        grid-template-columns: 250px 1fr !important;
+        grid-template-rows: auto auto !important;
+        gap: 0 30px !important;
+        position: relative !important;
     }
 
+    /* Place the poster in column 1, spanning both content rows */
+    :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile {
+        grid-column: 1 !important;
+        grid-row: 1 / span 2 !important;
+        position: relative !important;
+        width: 100% !important;
+        margin: 0 !important;
+        align-self: start !important;
+    }
+
+    /* Target the poster card to scale smoothly */
+    :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile .card {
+        width: 100% !important;
+        max-width: unset !important;
+    }
+
+    /* Place the title/ribbon section in column 2 */
+    :not(.layout-tv) .layout-desktop .detailRibbon {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        padding-left: 0 !important;
+    }
+
+    /* Place the tracks, overview, and details in column 2 below the ribbon */
+    :not(.layout-tv) .layout-desktop .detailPagePrimaryContent {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        padding-left: 0 !important;
+    }
+
+    /* Reset legacy Jellyfin absolute margins and offsets */
     :not(.layout-tv) .layout-desktop .mainDetailButtons {
-        position: relative;
-        margin-top: 1em;
-        margin-left: 0;
+        position: relative !important;
+        margin-left: 0 !important;
+        margin-top: 1em !important;
     }
 
-    /* Reset legacy absolute-height/padding wrappers */
-    :not(.layout-tv) .layout-desktop .detailPagePrimaryContent,
     :not(.layout-tv) .layout-desktop .infoWrapper {
-        padding-top: unset;
-        padding-left: unset;
-        min-height: unset;
+        padding: 0 !important;
+        min-height: unset !important;
     }
 }
 
@@ -476,11 +500,6 @@ progress {
 }
 
 .layout-desktop .detailPageContent {
-    padding-left: 3.3% !important;
-}
-
-.detailRibbon {
-    background: unset;
     padding-left: 0 !important;
 }
 
