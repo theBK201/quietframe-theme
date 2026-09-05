@@ -371,16 +371,16 @@ progress {
 
 /* Content Details - Web Browsers Only (Excludes Android TV, TizenOS, webOS, and Smart TVs) */
 @media screen and (min-width: 1025px) and (hover: hover) and (pointer: fine) {
-    /* Establish a two-column grid layout */
+    /* Establish grid on main container */
     :not(.layout-tv) .layout-desktop .detailPagePrimaryContainer {
         display: grid !important;
-        grid-template-columns: 250px 1fr !important;
+        grid-template-columns: 280px minmax(0, 1fr) !important;
         grid-template-rows: auto auto !important;
-        gap: 0 30px !important;
+        gap: 0 25px !important;
         position: relative !important;
     }
 
-    /* Place the poster in column 1, spanning both content rows */
+    /* Column 1: Poster */
     :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile {
         grid-column: 1 !important;
         grid-row: 1 / span 2 !important;
@@ -390,36 +390,47 @@ progress {
         align-self: start !important;
     }
 
-    /* Target the poster card to scale smoothly */
     :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile .card {
         width: 100% !important;
         max-width: unset !important;
     }
 
-    /* Place the title/ribbon section in column 2 */
+    /* Column 2: Title & Buttons (Ribbon) */
     :not(.layout-tv) .layout-desktop .detailRibbon {
         grid-column: 2 !important;
         grid-row: 1 !important;
-        padding-left: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: 100% !important;
     }
 
-    /* Place the tracks, overview, and details in column 2 below the ribbon */
+    /* Reset internal info wrapper so title stays in Column 2 */
+    :not(.layout-tv) .layout-desktop .infoWrapper {
+        padding: 0 !important;
+        margin: 0 !important;
+        position: relative !important;
+        width: 100% !important;
+        min-height: unset !important;
+    }
+
+    /* Keep main buttons contained in Column 2 */
+    :not(.layout-tv) .layout-desktop .mainDetailButtons {
+        position: relative !important;
+        margin: 1em 0 0 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        justify-content: flex-start !important;
+    }
+
+    /* Column 2: Media selectors & Overview */
     :not(.layout-tv) .layout-desktop .detailPagePrimaryContent {
         grid-column: 2 !important;
         grid-row: 2 !important;
-        padding-left: 0 !important;
-    }
-
-    /* Reset legacy Jellyfin absolute margins and offsets */
-    :not(.layout-tv) .layout-desktop .mainDetailButtons {
-        position: relative !important;
-        margin-left: 0 !important;
-        margin-top: 1em !important;
-    }
-
-    :not(.layout-tv) .layout-desktop .infoWrapper {
         padding: 0 !important;
-        min-height: unset !important;
+        margin-top: 1em !important;
     }
 }
 
