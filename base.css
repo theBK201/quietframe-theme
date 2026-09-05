@@ -371,32 +371,48 @@ progress {
 
 /* Content Details - Web Browsers Only (Excludes Android TV, TizenOS, webOS, and Smart TVs) */
 @media screen and (min-width: 1025px) and (hover: hover) and (pointer: fine) {
-    /* Establish grid on main container */
+    /*
+     * Content Details — desktop
+     * Keep the poster compact and give the information/buttons room to breathe.
+     */
     :not(.layout-tv) .layout-desktop .detailPagePrimaryContainer {
         display: grid !important;
-        grid-template-columns: 280px minmax(0, 1fr) !important;
+        grid-template-columns: 240px minmax(0, 1fr) !important;
         grid-template-rows: auto auto !important;
-        gap: 0 30px !important;
+        column-gap: 28px !important;
+        row-gap: 0 !important;
         position: relative !important;
         align-items: start !important;
     }
 
-    /* Column 1: Poster */
+    /* Poster: fixed, compact 2:3 card instead of filling the column */
     :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile {
         grid-column: 1 !important;
         grid-row: 1 / span 2 !important;
         position: relative !important;
-        width: 100% !important;
+        width: 240px !important;
+        max-width: 240px !important;
         margin: 0 !important;
+        padding: 0 !important;
         align-self: start !important;
     }
 
-    :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile .card {
-        width: 100% !important;
-        max-width: unset !important;
+    :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile .card,
+    :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile .cardBox {
+        width: 240px !important;
+        max-width: 240px !important;
+        aspect-ratio: 2 / 3 !important;
+        margin: 0 !important;
     }
 
-    /* Column 2: Ribbon (Title + Metadata + Buttons) */
+    :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: var(--theme-roundness) !important;
+    }
+
+    /* Information column */
     :not(.layout-tv) .layout-desktop .detailRibbon {
         grid-column: 2 !important;
         grid-row: 1 !important;
@@ -407,9 +423,9 @@ progress {
         align-items: flex-start !important;
         justify-content: flex-start !important;
         width: 100% !important;
+        min-width: 0 !important;
     }
 
-    /* Keep Title and Year/Rating metadata together */
     :not(.layout-tv) .layout-desktop .infoWrapper {
         padding: 0 !important;
         margin: 0 !important;
@@ -418,24 +434,99 @@ progress {
         min-height: unset !important;
     }
 
-    /* Force buttons into their own full-width row below the title info */
+    /* Clean, compact action-button row */
     :not(.layout-tv) .layout-desktop .mainDetailButtons {
         position: relative !important;
         display: flex !important;
         flex-wrap: wrap !important;
+        align-items: center !important;
         gap: 8px !important;
-        margin: 1.2em 0 0.5em 0 !important;
+        margin: 14px 0 8px !important;
         padding: 0 !important;
         width: 100% !important;
         justify-content: flex-start !important;
     }
 
-    /* Column 2: Media selectors, Tagline, Overview */
+    :not(.layout-tv) .layout-desktop .mainDetailButtons .detailButton {
+        box-sizing: border-box !important;
+        min-height: 40px !important;
+        height: 40px !important;
+        padding: 0 14px 0 11px !important;
+        margin: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        border: 1px solid rgba(255,255,255,.08) !important;
+        border-radius: var(--theme-roundness) !important;
+        background: rgba(58,58,58,.72) !important;
+        box-shadow: inset 0 1px rgba(255,255,255,.08) !important;
+        white-space: nowrap !important;
+        transition: background-color .15s ease, transform .15s ease !important;
+    }
+
+    :not(.layout-tv) .layout-desktop .mainDetailButtons .detailButton:hover {
+        background: rgba(105,105,105,.42) !important;
+        transform: translateY(-1px) !important;
+    }
+
+    /* Put the icon and generated label next to each other */
+    :not(.layout-tv) .layout-desktop .mainDetailButtons .detailButton-icon {
+        position: static !important;
+        width: 20px !important;
+        height: 20px !important;
+        min-width: 20px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    :not(.layout-tv) .layout-desktop .mainDetailButtons .detailButton-icon:before {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+    }
+
+    :not(.layout-tv) .layout-desktop .mainDetailButtons .detailButton-content {
+        display: inline-block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+    }
+
+    :not(.layout-tv) .layout-desktop .mainDetailButtons .detailButton-content:before {
+        position: static !important;
+        margin: 0 !important;
+        line-height: 1 !important;
+    }
+
+    /* Column 2: media selectors, tagline and overview */
     :not(.layout-tv) .layout-desktop .detailPagePrimaryContent {
         grid-column: 2 !important;
         grid-row: 2 !important;
+        min-width: 0 !important;
         padding: 0 !important;
-        margin-top: 1em !important;
+        margin-top: 10px !important;
+    }
+
+    /* Prevent long descriptions/tags from pushing the column wider */
+    :not(.layout-tv) .layout-desktop .detailPagePrimaryContent > * {
+        max-width: 100% !important;
+    }
+
+    /* Slightly smaller poster on narrower desktop windows */
+    @media (max-width: 1250px) {
+        :not(.layout-tv) .layout-desktop .detailPagePrimaryContainer {
+            grid-template-columns: 210px minmax(0, 1fr) !important;
+            column-gap: 22px !important;
+        }
+
+        :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile,
+        :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile .card,
+        :not(.layout-tv) .layout-desktop .detailImageContainer.hide-mobile .cardBox {
+            width: 210px !important;
+            max-width: 210px !important;
+        }
     }
 }
 
